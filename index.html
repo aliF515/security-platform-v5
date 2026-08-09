@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Security Platform V5.0</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        <span class="logo-mark">◈</span>
+        <span>SECURITY<span class="accent">V5</span></span>
+    </div>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#scanner">Scanner</a>
+        <a href="#recon">Recon</a>
+        <a href="#reports">Reports</a>
+        <a href="#pricing">Pricing</a>
+    </nav>
+
+    <button class="login-btn">Login</button>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="version">
+            ● SECURITY PLATFORM V5.0
+        </div>
+
+        <h1>
+            Intelligence for the
+            <span>modern defender.</span>
+        </h1>
+
+        <p>
+            Analyze domains, URLs, IP addresses, files, hashes,
+            phone metadata and email exposure from one unified
+            security workspace.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary"
+                    onclick="scrollToSection('scanner')">
+                Launch Scanner →
+            </button>
+
+            <button class="secondary"
+                    onclick="scrollToSection('pricing')">
+                View Plans
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="terminal">
+
+        <div class="terminal-top">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="terminal-body">
+
+            <p>> initializing security engine...</p>
+            <p>> loading modules...</p>
+            <p class="green">[OK] URL intelligence</p>
+            <p class="green">[OK] IP intelligence</p>
+            <p class="green">[OK] Domain reconnaissance</p>
+            <p class="green">[OK] Hash analysis</p>
+            <p class="green">[OK] Exposure monitoring</p>
+            <p>> system ready_</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="section">
+
+    <div class="section-title">
+        <span>01</span>
+        <h2>Security Dashboard</h2>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <span>SCANS</span>
+            <strong id="scanCount">0</strong>
+            <small>Total analyses</small>
+        </div>
+
+        <div class="stat-card">
+            <span>THREATS</span>
+            <strong id="threatCount">0</strong>
+            <small>Detected indicators</small>
+        </div>
+
+        <div class="stat-card">
+            <span>DOMAINS</span>
+            <strong id="domainCount">0</strong>
+            <small>Analyzed assets</small>
+        </div>
+
+        <div class="stat-card">
+            <span>PLAN</span>
+            <strong>FREE</strong>
+            <small>Limited access</small>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCANNER -->
+
+<section id="scanner" class="section scanner-section">
+
+    <div class="section-title">
+        <span>02</span>
+        <h2>Unified Scanner</h2>
+    </div>
+
+    <div class="scanner-box">
+
+        <div class="scanner-tabs">
+
+            <button onclick="selectType('url')">URL</button>
+            <button onclick="selectType('domain')">DOMAIN</button>
+            <button onclick="selectType('ip')">IP</button>
+            <button onclick="selectType('hash')">HASH</button>
+            <button onclick="selectType('email')">EMAIL</button>
+            <button onclick="selectType('phone')">PHONE</button>
+
+        </div>
+
+        <div class="input-area">
+
+            <input
+                id="targetInput"
+                type="text"
+                placeholder="Enter security indicator..."
+                autocomplete="off"
+            >
+
+            <button class="scan-btn" onclick="startScan()">
+                ANALYZE
+            </button>
+
+        </div>
+
+        <div class="scan-note">
+
+            Authorized defensive analysis only.
+            Do not submit credentials or private information.
+
+        </div>
+
+    </div>
+
+
+    <div id="results" class="results hidden">
+
+        <div class="result-header">
+
+            <div>
+                <small>ANALYSIS RESULT</small>
+                <h3 id="resultTarget">Target</h3>
+            </div>
+
+            <div id="riskBadge" class="risk safe">
+                LOW RISK
+            </div>
+
+        </div>
+
+
+        <div class="result-grid">
+
+            <div>
+                <span>Type</span>
+                <strong id="resultType">URL</strong>
+            </div>
+
+            <div>
+                <span>Status</span>
+                <strong id="resultStatus">Analyzed</strong>
+            </div>
+
+            <div>
+                <span>Reputation</span>
+                <strong id="resultReputation">Pending API</strong>
+            </div>
+
+            <div>
+                <span>Confidence</span>
+                <strong>--</strong>
+            </div>
+
+        </div>
+
+
+        <div class="api-placeholder">
+
+            <span>API INTEGRATION POINT</span>
+
+            <p>
+                Connect your backend to approved intelligence
+                providers such as VirusTotal or other reputation
+                services.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RECON -->
+
+<section id="recon" class="section">
+
+    <div class="section-title">
+        <span>03</span>
+        <h2>Reconnaissance Workspace</h2>
+    </div>
+
+    <div class="modules">
+
+        <article class="module">
+            <div class="module-icon">◎</div>
+            <h3>Domain Intelligence</h3>
+            <p>
+                DNS records, certificates, registrar metadata,
+                technologies and public infrastructure information.
+            </p>
+            <button onclick="openModule('domain')">
+                Open Module →
+            </button>
+        </article>
+
+
+        <article class="module">
+            <div class="module-icon">◉</div>
+            <h3>IP Intelligence</h3>
+            <p>
+                Analyze public IP reputation, ASN, provider,
+                location and abuse-related indicators.
+            </p>
+            <button onclick="openModule('ip')">
+                Open Module →
+            </button>
+        </article>
+
+
+        <article class="module">
+            <div class="module-icon">◇</div>
+            <h3>Email Exposure</h3>
+            <p>
+                Check whether an authorized email address appears
+                in known public breach datasets.
+            </p>
+            <button onclick="openModule('email')">
+                Open Module →
+            </button>
+        </article>
+
+
+        <article class="module">
+            <div class="module-icon">⬡</div>
+            <h3>Hash Intelligence</h3>
+            <p>
+                Submit a file hash for malware and reputation
+                analysis without exposing the original file.
+            </p>
+            <button onclick="openModule('hash')">
+                Open Module →
+            </button>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- REPORTS -->
+
+<section id="reports" class="section">
+
+    <div class="section-title">
+        <span>04</span>
+        <h2>Security Reports</h2>
+    </div>
+
+    <div class="report-panel">
+
+        <div>
+            <h3>Investigation Reports</h3>
+
+            <p>
+                Generate structured reports containing scan
+                metadata, indicators, findings and timestamps.
+            </p>
+        </div>
+
+        <button class="primary" onclick="generateReport()">
+            Generate Report
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section id="pricing" class="section pricing-section">
+
+    <div class="section-title">
+        <span>05</span>
+        <h2>Access Plans</h2>
+    </div>
+
+
+    <div class="pricing">
+
+        <div class="price-card">
+
+            <div class="plan">FREE</div>
+
+            <h3>$0</h3>
+
+            <p class="period">forever</p>
+
+            <ul>
+                <li>✓ Limited scans</li>
+                <li>✓ Basic domain analysis</li>
+                <li>✓ Basic IP intelligence</li>
+                <li>✓ Basic reports</li>
+                <li>✓ Limited history</li>
+            </ul>
+
+            <button class="secondary">
+                Current Plan
+            </button>
+
+        </div>
+
+
+        <div class="price-card featured">
+
+            <div class="popular">RECOMMENDED</div>
+
+            <div class="plan">PRO MONTHLY</div>
+
+            <h3>$50</h3>
+
+            <p class="period">per month</p>
+
+            <ul>
+                <li>✓ Extended scanning</li>
+                <li>✓ Advanced reputation data</li>
+                <li>✓ Full reconnaissance workspace</li>
+                <li>✓ Extended scan history</li>
+                <li>✓ Advanced reports</li>
+                <li>✓ Priority processing</li>
+            </ul>
+
+            <button class="primary">
+                Upgrade
+            </button>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <div class="plan">PRO YEARLY</div>
+
+            <h3>$600</h3>
+
+            <p class="period">per year</p>
+
+            <ul>
+                <li>✓ Everything in Pro</li>
+                <li>✓ Annual billing</li>
+                <li>✓ Extended reporting</li>
+                <li>✓ Investigation history</li>
+                <li>✓ Priority support</li>
+            </ul>
+
+            <button class="secondary">
+                Choose Yearly
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div>
+        <strong>SECURITY V5.0</strong>
+        <p>Defensive intelligence platform.</p>
+    </div>
+
+    <div>
+        <span>Authorized use only.</span>
+    </div>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
